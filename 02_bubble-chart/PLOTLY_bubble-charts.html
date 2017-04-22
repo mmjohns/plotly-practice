@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>PLOTLY_simple-bar-line-charts</title>
+<title>PLOTLY_bubble-charts</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -11751,10 +11751,10 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Plotly:-Simple-Line-Charts">Plotly: Simple Line Charts<a class="anchor-link" href="#Plotly:-Simple-Line-Charts">&#182;</a></h1><h2 id="Practicing-and-experimenting-with-Plotly,-Python-and-Data-Visualization.">Practicing and experimenting with Plotly, Python and Data Visualization.<a class="anchor-link" href="#Practicing-and-experimenting-with-Plotly,-Python-and-Data-Visualization.">&#182;</a></h2><h4 id="Links:">Links:<a class="anchor-link" href="#Links:">&#182;</a></h4><ul>
+<h1 id="Plotly:-Bubble-Charts">Plotly: Bubble Charts<a class="anchor-link" href="#Plotly:-Bubble-Charts">&#182;</a></h1><h2 id="Practicing-and-experimenting-with-Plotly,-Python-and-Data-Visualization.">Practicing and experimenting with Plotly, Python and Data Visualization.<a class="anchor-link" href="#Practicing-and-experimenting-with-Plotly,-Python-and-Data-Visualization.">&#182;</a></h2><h4 id="Links:">Links:<a class="anchor-link" href="#Links:">&#182;</a></h4><ul>
 <li><p>With help from <a href="http://nbviewer.jupyter.org/github/plotly/python-user-guide/tree/master/">Plotly User Guide</a></p>
 </li>
-<li><p>Stored in <a href="https://github.com/mmjohns/plotly-practice/blob/master/PLOTLY_simple-bar-line-charts.ipynb">GitHub</a></p>
+<li><p>Stored in <a href="https://github.com/mmjohns/plotly-practice">GitHub</a></p>
 </li>
 </ul>
 
@@ -11806,299 +11806,13 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">plotly</span>
-<span class="kn">import</span> <span class="nn">plotly.plotly</span> <span class="k">as</span> <span class="nn">py</span>
-<span class="kn">import</span> <span class="nn">plotly.tools</span> <span class="k">as</span> <span class="nn">tls</span> 
-<span class="kn">from</span> <span class="nn">plotly.graph_objs</span> <span class="k">import</span> <span class="n">Data</span><span class="p">,</span> <span class="n">Layout</span><span class="p">,</span> <span class="n">Figure</span><span class="p">,</span> <span class="n">XAxis</span><span class="p">,</span> <span class="n">YAxis</span>
-
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
 </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># (*) csv file read/write</span>
-<span class="kn">import</span> <span class="nn">csv</span>         
-
-<span class="c1"># Define a csv reader function</span>
-<span class="k">def</span> <span class="nf">get_csv_data</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">row_id</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39; </span>
-<span class="sd">    Read row of csv file, return a numpy array where</span>
-<span class="sd">    each entry corresp. to a particular year</span>
-<span class="sd">    pos. arg (1) filepath: relative path to csv file </span>
-<span class="sd">    pos. arg (2) row_id: id of row requested, found in first column (a string)</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">data_file</span><span class="p">:</span>
-        <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">data_file</span><span class="p">)</span>        <span class="c1"># define reader object</span>
-        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>                    <span class="c1"># loop through rows in csv file</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="ow">and</span> <span class="n">row_id</span> <span class="ow">in</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="c1"># test for empty lines and row id</span>
-                <span class="c1"># Trim 1st entry</span>
-                <span class="c1"># and return a numpy array</span>
-                <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">:]])</span>
-            
-<span class="c1"># The &#39;with&#39; statement automatically closes &#39;filepath&#39; at the end of its block of code</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Function for the csv file</span>
-<span class="n">life_expt_file</span> <span class="o">=</span> <span class="s1">&#39;/Users/meganjohns/AnacondaProjects/plotly-practice/data/world_life_expt_by_year.csv&#39;</span>
-
-<span class="c1"># Import CSV file and store specific rows as lists</span>
-<span class="n">year</span> <span class="o">=</span> <span class="n">get_csv_data</span><span class="p">(</span><span class="n">life_expt_file</span><span class="p">,</span> <span class="s1">&#39;Year&#39;</span><span class="p">)</span>
-<span class="n">US_life_expt</span> <span class="o">=</span> <span class="n">get_csv_data</span><span class="p">(</span><span class="n">life_expt_file</span><span class="p">,</span> <span class="s1">&#39;United States&#39;</span><span class="p">)</span>
-<span class="c1"># Will use later</span>
-<span class="n">China_life_expt</span> <span class="o">=</span> <span class="n">get_csv_data</span><span class="p">(</span><span class="n">life_expt_file</span><span class="p">,</span> <span class="s1">&#39;China&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Colors</span>
-<span class="n">US_color</span> <span class="o">=</span> <span class="s1">&#39;#002868&#39;</span>
-<span class="n">China_color</span> <span class="o">=</span> <span class="s1">&#39;#aa381e&#39;</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Single-Line-Chart"><a id="section2">Single Line Chart</a><a class="anchor-link" href="#Single-Line-Chart">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Make a dictionary linking x and y coordinate lists to &#39;x&#39; and &#39;y&#39; keys</span>
-<span class="n">trace1</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="n">year</span><span class="p">,</span> 
-    <span class="n">y</span><span class="o">=</span><span class="n">US_life_expt</span><span class="p">,</span>
-    <span class="n">line</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">color</span> <span class="o">=</span> <span class="n">US_color</span><span class="p">,</span>
-        <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span>
-    <span class="p">),</span>
-    <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
-<span class="p">)</span>
-
-<span class="c1"># Make list of trace, to be sent to Plotly</span>
-<span class="n">data1</span> <span class="o">=</span> <span class="p">[</span><span class="n">trace1</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Make Layout object</span>
-<span class="n">layout1</span> <span class="o">=</span> <span class="n">Layout</span><span class="p">(</span>
-    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;&lt;b&gt;U.S. Life Expectancy Over Time&lt;/b&gt;&lt;br&gt;</span><span class="se">\</span>
-<span class="s2">    (1952-2007)&quot;</span><span class="p">,</span>
-    <span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">yaxis</span><span class="o">=</span> <span class="n">YAxis</span><span class="p">(</span>
-        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Life Expectancy (years)&#39;</span><span class="p">,</span>
-        <span class="n">showgrid</span><span class="o">=</span><span class="kc">False</span>
-    <span class="p">),</span>
-    <span class="n">xaxis</span><span class="o">=</span> <span class="n">XAxis</span><span class="p">(</span>
-        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span>
-        <span class="n">showgrid</span><span class="o">=</span><span class="kc">False</span>
-    <span class="p">)</span>
-<span class="p">)</span>
-
-<span class="c1"># Make Figure object</span>
-<span class="n">fig1</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data1</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="n">layout1</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Call the plot() function of the plotly.plotly submodule,</span>
-<span class="c1"># save and name figure</span>
-<span class="c1"># Note: to keep plots private (free accounts have a limit), add argument world_readable=False</span>
-<span class="c1"># py.plot(fig, filename=&#39;simple_US_life_expt_over_time&#39;, auto_open=False)</span>
-
-<span class="c1"># Embed result in notebook</span>
-<span class="n">py</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">fig1</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;simple_US_life_expt_over_time&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[20]:</div>
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="https://plot.ly/~mjoh/18.embed" height="525px" width="100%"></iframe>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Dual-Line-Chart"><a id="section3">Dual Line Chart</a><a class="anchor-link" href="#Dual-Line-Chart">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Define a trace-generating function (returns a Line object)</span>
-<span class="k">def</span> <span class="nf">make_trace</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">year</span><span class="p">,</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">,</span>
-        <span class="n">line</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-            <span class="n">color</span> <span class="o">=</span> <span class="n">color</span><span class="p">,</span>
-            <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span>
-        <span class="p">),</span>
-        <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
-    <span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[60]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Build the data object</span>
-<span class="c1"># Assign temp traces to top axis</span>
-<span class="n">trace2</span> <span class="o">=</span> <span class="p">[</span><span class="n">make_trace</span><span class="p">(</span><span class="n">US_life_expt</span><span class="p">,</span> <span class="n">US_color</span><span class="p">,</span> <span class="s1">&#39;US&#39;</span><span class="p">),</span>
-           <span class="n">make_trace</span><span class="p">(</span><span class="n">China_life_expt</span><span class="p">,</span> <span class="n">China_color</span><span class="p">,</span> <span class="s1">&#39;China&#39;</span><span class="p">)]</span>
-
-
-<span class="c1"># Make Layout object</span>
-<span class="n">layout2</span> <span class="o">=</span> <span class="n">Layout</span><span class="p">(</span>
-    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;&lt;b&gt;U.S. and China Life Expectancy Over Time&lt;/b&gt;&lt;br&gt;</span><span class="se">\</span>
-<span class="s2">    (1952-2007)&quot;</span><span class="p">,</span>
-    <span class="n">yaxis</span><span class="o">=</span> <span class="n">YAxis</span><span class="p">(</span>
-        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Life Expectancy (years)&#39;</span><span class="p">,</span>
-        <span class="n">showgrid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="p">),</span>
-    <span class="n">xaxis</span><span class="o">=</span> <span class="n">XAxis</span><span class="p">(</span>
-        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span>
-        <span class="n">showgrid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="p">),</span>
-    <span class="n">font</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">family</span><span class="o">=</span><span class="s1">&#39;Droid Serif&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-<span class="p">)</span>
-
-<span class="c1"># Make Figure object</span>
-<span class="n">fig2</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">trace2</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="n">layout2</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[61]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># (@) Send to Plotly and show in notebook</span>
-<span class="n">py</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">fig2</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;simple_US_Ch_life_expt_over_time&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[61]:</div>
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="https://plot.ly/~mjoh/20.embed" height="525px" width="100%"></iframe>
-</div>
-
-</div>
-
 </div>
 </div>
 
