@@ -11807,7 +11807,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">plotly</span>
@@ -11825,7 +11825,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># (*) csv file read/write</span>
@@ -11857,7 +11857,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Function for the csv file</span>
@@ -11877,7 +11877,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Colors</span>
@@ -11911,7 +11911,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Make a dictionary linking x and y coordinate lists to &#39;x&#39; and &#39;y&#39; keys</span>
@@ -11936,7 +11936,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Make Layout object</span>
@@ -11965,7 +11965,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Call the plot() function of the plotly.plotly submodule,</span>
@@ -11985,7 +11985,7 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[34]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[26]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="https://plot.ly/~mjoh/18.embed" height="525px" width="100%"></iframe>
@@ -12018,11 +12018,11 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[138]:</div>
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Define a trace-generating function (returns a Line object)</span>
-<span class="k">def</span> <span class="nf">make_trace</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">make_trace1</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
     <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">year</span><span class="p">,</span>
         <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span>
@@ -12042,13 +12042,13 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[139]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Build the data object</span>
 <span class="c1"># Assign temp traces to top axis</span>
-<span class="n">trace2</span> <span class="o">=</span> <span class="p">[</span><span class="n">make_trace</span><span class="p">(</span><span class="n">US_life_expt</span><span class="p">,</span> <span class="n">US_color</span><span class="p">,</span> <span class="s1">&#39;US&#39;</span><span class="p">),</span>
-           <span class="n">make_trace</span><span class="p">(</span><span class="n">China_life_expt</span><span class="p">,</span> <span class="n">China_color</span><span class="p">,</span> <span class="s1">&#39;China&#39;</span><span class="p">)]</span>
+<span class="n">trace2</span> <span class="o">=</span> <span class="p">[</span><span class="n">make_trace1</span><span class="p">(</span><span class="n">US_life_expt</span><span class="p">,</span> <span class="n">US_color</span><span class="p">,</span> <span class="s1">&#39;US&#39;</span><span class="p">),</span>
+           <span class="n">make_trace1</span><span class="p">(</span><span class="n">China_life_expt</span><span class="p">,</span> <span class="n">China_color</span><span class="p">,</span> <span class="s1">&#39;China&#39;</span><span class="p">)]</span>
 
 
 <span class="c1"># Make Layout object</span>
@@ -12061,8 +12061,7 @@ div#notebook {
     <span class="p">),</span>
     <span class="n">xaxis</span><span class="o">=</span> <span class="n">XAxis</span><span class="p">(</span>
         <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span>
-        <span class="n">showgrid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">80</span><span class="p">]</span>
+        <span class="n">showgrid</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">),</span>
     <span class="n">font</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">family</span><span class="o">=</span><span class="s1">&#39;Droid Serif&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
 <span class="p">)</span>
@@ -12078,7 +12077,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[140]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># (@) Send to Plotly and show in notebook</span>
@@ -12093,44 +12092,12 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">PlotlyError</span>                               Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-140-e5be22017f21&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># (@) Send to Plotly and show in notebook</span>
-<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>py<span class="ansi-blue-fg">.</span>iplot<span class="ansi-blue-fg">(</span>fig2<span class="ansi-blue-fg">,</span> filename<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;simple_US_Ch_life_expt_over_time&#39;</span><span class="ansi-blue-fg">)</span>
+<div class="output_area"><div class="prompt output_prompt">Out[43]:</div>
 
-<span class="ansi-green-fg">/anaconda/lib/python3.6/site-packages/plotly/plotly/plotly.py</span> in <span class="ansi-cyan-fg">iplot</span><span class="ansi-blue-fg">(figure_or_data, **plot_options)</span>
-<span class="ansi-green-intense-fg ansi-bold">    149</span>     <span class="ansi-green-fg">if</span> <span class="ansi-blue-fg">&#39;auto_open&#39;</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">in</span> plot_options<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    150</span>         plot_options<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;auto_open&#39;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">False</span>
-<span class="ansi-green-fg">--&gt; 151</span><span class="ansi-red-fg">     </span>url <span class="ansi-blue-fg">=</span> plot<span class="ansi-blue-fg">(</span>figure_or_data<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>plot_options<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    152</span> 
-<span class="ansi-green-intense-fg ansi-bold">    153</span>     <span class="ansi-green-fg">if</span> isinstance<span class="ansi-blue-fg">(</span>figure_or_data<span class="ansi-blue-fg">,</span> dict<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">/anaconda/lib/python3.6/site-packages/plotly/plotly/plotly.py</span> in <span class="ansi-cyan-fg">plot</span><span class="ansi-blue-fg">(figure_or_data, validate, **plot_options)</span>
-<span class="ansi-green-intense-fg ansi-bold">    239</span> 
-<span class="ansi-green-intense-fg ansi-bold">    240</span>     plot_options <span class="ansi-blue-fg">=</span> _plot_option_logic<span class="ansi-blue-fg">(</span>plot_options<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">--&gt; 241</span><span class="ansi-red-fg">     </span>res <span class="ansi-blue-fg">=</span> _send_to_plotly<span class="ansi-blue-fg">(</span>figure<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>plot_options<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    242</span>     <span class="ansi-green-fg">if</span> res<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;error&#39;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">==</span> <span class="ansi-blue-fg">&#39;&#39;</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    243</span>         <span class="ansi-green-fg">if</span> plot_options<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;auto_open&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">/anaconda/lib/python3.6/site-packages/plotly/plotly/plotly.py</span> in <span class="ansi-cyan-fg">_send_to_plotly</span><span class="ansi-blue-fg">(figure, **plot_options)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1429</span> 
-<span class="ansi-green-intense-fg ansi-bold">   1430</span>     <span class="ansi-green-fg">if</span> <span class="ansi-blue-fg">&#39;error&#39;</span> <span class="ansi-green-fg">in</span> r <span class="ansi-green-fg">and</span> r<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;error&#39;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">!=</span> <span class="ansi-blue-fg">&#39;&#39;</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 1431</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">raise</span> exceptions<span class="ansi-blue-fg">.</span>PlotlyError<span class="ansi-blue-fg">(</span>r<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;error&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1432</span> 
-<span class="ansi-green-intense-fg ansi-bold">   1433</span>     <span class="ansi-red-fg"># Check if the url needs a secret key</span>
-
-<span class="ansi-red-fg">PlotlyError</span>: Hey there! You&#39;ve hit one of our API request limits. 
-
-To get unlimited API calls(10,000/day), please upgrade to a paid plan. 
-
-UPGRADE HERE: https://goo.gl/i7glmM 
-
-Thanks for using Plotly! Happy Plotting!</pre>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="https://plot.ly/~mjoh/20.embed" height="525px" width="100%"></iframe>
 </div>
+
 </div>
 
 </div>
@@ -12168,7 +12135,7 @@ Thanks for using Plotly! Happy Plotting!</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Function for the csv file</span>
@@ -12196,7 +12163,7 @@ Thanks for using Plotly! Happy Plotting!</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[75]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Generate Figure object with 2 axes on 2 rows, print axis grid to stdout</span>
@@ -12231,7 +12198,7 @@ Thanks for using Plotly! Happy Plotting!</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[76]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Define a trace-generating function (returns a Bar object)</span>
@@ -12263,7 +12230,7 @@ Thanks for using Plotly! Happy Plotting!</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[77]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Assign gdp traces to &#39;xaxis2&#39; and &#39;yaxis2&#39; (top axis)</span>
@@ -12285,7 +12252,7 @@ Thanks for using Plotly! Happy Plotting!</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[130]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Make Layout object</span>
@@ -12331,7 +12298,7 @@ Thanks for using Plotly! Happy Plotting!</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[131]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Define a function for updating up the axes (return a dictionary)</span>
@@ -12384,7 +12351,7 @@ Thanks for using Plotly! Happy Plotting!</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[132]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Define a 1st annotation-generating function (for title and data source)</span>
@@ -12426,7 +12393,7 @@ Thanks for using Plotly! Happy Plotting!</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[133]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Define annotation-generating function (for the legend)</span>
@@ -12476,7 +12443,7 @@ Thanks for using Plotly! Happy Plotting!</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[134]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Send to Plotly and show in notebook</span>
@@ -12491,7 +12458,7 @@ Thanks for using Plotly! Happy Plotting!</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[134]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[38]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="https://plot.ly/~mjoh/22.embed" height="525px" width="100%"></iframe>
